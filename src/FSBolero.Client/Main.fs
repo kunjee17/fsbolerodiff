@@ -13,7 +13,7 @@ type Message =
     | Zero
     | One
     | Scalar
-    | Vec
+    | Vector
 
 let init arg =
     let t1 = Tensor.Zero
@@ -30,8 +30,7 @@ let update message model =
     | Scalar ->
         { model with
               currentTensor = dsharp.tensor 1.2 }
-    | Vec ->
-        printfn "in vector"
+    | Vector ->
         { model with
               currentTensor = (dsharp.tensor [ 0.0; 0.3; 0.1 ]) }
 
@@ -127,7 +126,7 @@ let view (model: Model) dispatch =
 
                     div [ attr.classes [ "column" ] ] [
                         button [ attr.classes [ "button" ]
-                                 on.click (fun _ -> Vec |> dispatch) ] [
+                                 on.click (fun _ -> Vector |> dispatch) ] [
                             text "Vector [ 0.0; 0.3; 0.1 ]"
                         ]
                     ]
